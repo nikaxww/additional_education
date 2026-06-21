@@ -3,8 +3,8 @@ import "./App.css";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
-// import Requests from "./Components/Requests";
-// import Admin from "./Components/Admin";
+import Requests from "./Components/Requests";
+import Admin from "./Components/Admin";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -18,7 +18,7 @@ function App() {
   };
 
   if (user) {
-    if (user.login === "beauty" && user.password) {
+    if (user.login === "admins" && user.password) {
       return <Admin user={user} onLogout={handleLogout} />;
     }
     return <Requests user={user} onLogout={handleLogout} />;
