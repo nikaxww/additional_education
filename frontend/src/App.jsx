@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Requests from "./Components/Requests";
@@ -18,25 +18,20 @@ function App() {
   };
 
   if (user) {
-    if (user.login === "admins" && user.password) {
+    if (user.id_role === 2) {
       return <Admin user={user} onLogout={handleLogout} />;
     }
     return <Requests user={user} onLogout={handleLogout} />;
   }
 
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/register" element={<Register></Register>}></Route>
-          <Route
-            path="/login"
-            element={<Login onLogin={handleLogin}></Login>}
-          ></Route>
-          <Route path="*" element={<Navigate to="/login" replace />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
